@@ -2,13 +2,15 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
+const redirect_uri = process.env.REDIRECT_URI
+
 module.exports = function (passport) {
   passport.use(
     new GoogleStrategy(
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: 'https://blog-site-kumail.herokuapp.com/auth/google/callback',
+        callbackURL: `${redirect_uri}/auth/google/callback`,
       },
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
