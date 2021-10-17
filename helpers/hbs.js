@@ -2,7 +2,7 @@ const moment = require('moment')
 
 module.exports = {
   formatDate: function (date, format) {
-    return moment(date).utc().format(format)
+    return moment(date).utcOffset("+05:30").format(format)
   },
   truncate: function (str, len) {
     if (str.length > len && str.length > 0) {

@@ -16,6 +16,7 @@ router.get('/', ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get('/dashboard', ensureAuth, async (req, res) => {
   try {
+    // lean convert mongoose documnet to plain javascript object.
     const blogs = await Blog.find({ user: req.user.id }).lean()
     res.render('dashboard', {
       name: req.user.firstName,
